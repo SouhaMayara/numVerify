@@ -1,0 +1,99 @@
+<form [formGroup]="phoneForm" #ngForm="ngForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Phone Number Validator<span *ngIf="ngForm.submitted && !phoneForm.valid" class="small-font"
+          [ngClass]="{'invalid': ngForm.submitted }">* required</span>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="accessKey" matInput placeholder="Access key">
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="lastName" matInput placeholder="Last name">
+          </mat-form-field>
+        </div> -->
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+          <!-- [ngClass]="{'invalid': ngForm.submitted && phoneForm.get('country').invalid}"
+            > -->
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country">
+              <mat-option *ngFor="let item of list" [value]="item.alpha2Code">
+                {{item.name}}({{item.alpha2Code}})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="phone" matInput placeholder="Phone number">
+            <div *ngIf="f.phone.touched && f.phone.invalid" class="invalid">
+              <div *ngIf="f.phone.errors.required">Number is required.</div>
+              <div *ngIf="f.phone.errors.pattern">Enter only number.</div>
+          </div>
+          </mat-form-field>
+        </div>
+        
+      </div>
+      <!-- <div class="col-md-2 top-padding">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let item of list" [value]="item.alpha2Code">
+              {{item.name}}({{item.alpha2Code}})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+
+    </mat-card-content>
+
+
+    
+
+
+    <!-- <input type="text" ng2TelInput /> -->
+
+    <!-- <input type="text"
+    ng2TelInput
+    [ng2TelInputOptions]="{initialCountry: 'in'}"
+    (hasError)="hasError($event)"
+    (ng2TelOutput)="getNumber($event)"
+    (intlTelInputObject)="telInputObject($event)"
+    (countryChange)="onCountryChange($event)" /> -->
+
+    <!-- <ngx-mat-intl-tel-input
+    name="phone"
+    formControlName="phone">
+  </ngx-mat-intl-tel-input> -->
+
+
+
+  <!-- <ngx-mat-intl-tel-input
+    [preferredCountries]="['us', 'gb']"
+    [onlyCountries]="['us', 'gb', 'es']"
+    [enablePlaceholder]="true"
+    name="phone"
+    formControlName="phone" #phone></ngx-mat-intl-tel-input>
+  <mat-hint>{{phone.selectedCountry.placeHolder}}</mat-hint>
+  <mat-error *ngIf="ngForm.form.controls['phone']?.errors?.required">Required Field</mat-error>
+  <mat-error *ngIf="ngForm.form.controls['phone']?.errors?.validatePhoneNumber">Invalid Number</mat-error> -->
+
+<!-- <NgxMatIntlTelInputComponent></NgxMatIntlTelInputComponent> -->
+
+    <mat-card-actions>
+      <button (click)="verify()" mat-raised-button color="primary">Verify</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
