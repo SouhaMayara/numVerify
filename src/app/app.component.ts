@@ -17,9 +17,6 @@ export class AppComponent  implements OnInit{
   list=[];
   listc=[];
  constructor(private formBuilder:FormBuilder,private myservice:NumVerifyService, private snackBar: MatSnackBar){
-  // this.list = this.phones.getData().subscribe(data=>{
-  //   console.warn(data)
-  // })
  }
 
  foods: Food[] = [
@@ -29,11 +26,6 @@ export class AppComponent  implements OnInit{
 ];
 
  phoneForm = this.formBuilder.group({
-  //  firstName:['',[Validators.required]],
-  //  lastName:['',[Validators.required]],
-  //  address:['',[Validators.required]],
-  //  dob:['',[Validators.required]],
-  //  gender:['',[Validators.required]],
    accessKey:['',[Validators.required]],
    phone:['',[Validators.required, Validators.pattern("^[0-9]*$")]],
    country:['',]
@@ -43,10 +35,6 @@ export class AppComponent  implements OnInit{
   this.myservice.getData().subscribe((res: any) => {
     console.log(res);
     this.list = res;
-    // for (let index = 0; index < this.list.length; index++) {
-    //   this.listc[name]=this.list[index];
-    //   console.log(this.listc);
-    // }
   });
  }
 
@@ -70,8 +58,6 @@ export class AppComponent  implements OnInit{
  }
 
  get f(){
-
   return this.phoneForm.controls;
-
 }
 }
